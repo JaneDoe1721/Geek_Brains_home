@@ -6,18 +6,20 @@
 # Если специальный символ введен после нескольких чисел, то вначале нужно добавить сумму этих
 # чисел к полученной ранее сумме и после этого завершить программу.
 def new_str():
-    try:
-        user_int = input('Введите строку чисел разделенных пробелом\n')
-        result = user_int.split(' ')
-        new_list = []
-        for itm in result:
-            new_list.append(int(itm))
+    while True:
+        try:
+            user_int = input('Введите строку чисел разделенных пробелом\n')
+            result = user_int.split(' ')
+            new_list = []
+            for itm in result:
+                new_list.append(int(itm))
 
-        total = sum(new_list)
-        print(total)
+            total = sum(new_list)
+            print(total)
 
-    except ValueError:
-        print('Введите числа разделенные одним пробелом!')
+        except ValueError:
+            print('Введите числа разделенные одним пробелом!')
+
 
 
 new_str()
