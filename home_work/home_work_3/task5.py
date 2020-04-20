@@ -5,21 +5,25 @@
 # Но если вместо числа вводится специальный символ, выполнение программы завершается.
 # Если специальный символ введен после нескольких чисел, то вначале нужно добавить сумму этих
 # чисел к полученной ранее сумме и после этого завершить программу.
-def new_str():
-    while True:
-        try:
-            user_int = input('Введите строку чисел разделенных пробелом\n')
-            result = user_int.split(' ')
-            new_list = []
-            for itm in result:
-                new_list.append(int(itm))
 
-            total = sum(new_list)
-            print(total)
-
-        except ValueError:
-            print('Введите числа разделенные одним пробелом!')
+def insert_sum(*args):
+    result = 0
+    exit_flag = False
+    try:
+        for itm in args:
+            result += float(itm) if itm else 0
+    except ValueError as e:
+        exit_flag = not exit_flag
+    return result, exit_flag
 
 
+user_sum = 0
+while True:
+    user_input = input('Введите числа через пробел\n').split(' ')
+    result_sum, user_exit = insert_sum(*user_input)
+    user_sum += result_sum
+    print(f'сумма: {user_sum}')
 
-new_str()
+    if user_exit:
+        print('Досвидания')
+        break
