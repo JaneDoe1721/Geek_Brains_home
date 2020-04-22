@@ -3,9 +3,23 @@
 # Пример исходного списка: [300, 2, 12, 44, 1, 1, 4, 10, 7, 1, 78, 123, 55].
 # Результат: [12, 44, 4, 10, 78, 123].
 
-list_of_number = [300, 2, 12, 44, 1, 1, 4, 10, 7, 1, 78, 123, 55]
 
-new_list = [el for el in list_of_number if el >= len(list_of_number) - 1]
+# решение функцией
+def test_iter(*args):
+    prev = float('inf')
+    for num in args:
+        if num > prev:
+            yield num
+        prev = num
 
-print(len(list_of_number) - 1)
-print(new_list)
+
+
+if __name__ == '__main__':
+    assert list(test_iter(1, 2, 3, 6, 5, 6, 7, 8)) == [2, 3, 6, 6, 7, 8]
+    assert list(test_iter(-1, 3, 6, 12, -5, 0, 2, 7)) == [3, 6, 12, 0, 2, 7]
+    assert list(test_iter(1)) == []
+
+    test = [-1, 3, 6, 12, -5, 0, 2, 7]
+    result = [itm for idx, itm in enumerate(test) if idx and itm > test[idx - 1]]
+    print(result)
+    assert result == [3, 6, 12, 0, 2, 7]
