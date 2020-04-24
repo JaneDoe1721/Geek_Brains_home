@@ -6,6 +6,9 @@ for itm in range(3):
     str_list.append(input("Введите данные\n"))
     str_list.append('\n')
 
-with open('new_file.txt', 'w') as out_file:
-    out_file.writelines(str_list)
+try:
+    with open('new_file.txt', 'w') as out_file:
+        out_file.writelines(str_list)
+except IOError:
+    print('Ошибка ввода-вывода')
 
